@@ -3,7 +3,7 @@ class CMyVector
 {
 private:
 	int size;
-	double *a;
+	double *elem;
 public:
 	CMyVector(int s);
 	~CMyVector();
@@ -11,4 +11,9 @@ public:
 	double operator()(int i);
 	double& operator[](int i);
 };
+
+CMyVector operator+(CMyVector a, CMyVector b);
+CMyVector operator*(double lambda, CMyVector a);
+
+
 
