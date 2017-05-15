@@ -45,6 +45,39 @@ double& CMyVector::operator[](int i)
 	
 }
 
+CMyVector& CMyVector::operator=(CMyVector& b)
+{
+	CMyVector a(b.getSize());
+	// TODO: hier Rückgabeanweisung eingeben
+	for (size_t i = 0; i < b.getSize(); i++)
+	{
+		a[i] = b(i);
+	}
+	return a;
+}
+
+CMyVector & CMyVector::operator=(CMyVector * b)
+{
+	CMyVector a(b->getSize());
+	// TODO: hier Rückgabeanweisung eingeben
+	for (size_t i = 0; i < b->getSize(); i++)
+	{
+		a[i] = b->operator()(i);
+	}
+	return a;
+}
+
+CMyVector::CMyVector(CMyVector& b)
+{
+	size = b.getSize();
+	elem = new double[size];
+	for (int i = 0; i < size; i++)
+	{
+		elem[i] = b(i);
+	}
+	
+}
+
 CMyVector operator+(CMyVector a, CMyVector b)
 {
 

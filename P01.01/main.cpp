@@ -5,7 +5,7 @@ using namespace std;
 
 
 
-// Stellt sozusagen die Steigung in allen Richtungen da
+// Steigung in allen Richtungen da
 CMyVector gradient(CMyVector x, double(*funktion)(CMyVector x))
 {
 	const double h = 10e-8;
