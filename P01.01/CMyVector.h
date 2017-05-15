@@ -15,5 +15,7 @@ public:
 CMyVector operator+(CMyVector a, CMyVector b);
 CMyVector operator*(double lambda, CMyVector a);
 
+double VecLength(CMyVector x);
+
 
 

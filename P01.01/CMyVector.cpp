@@ -1,6 +1,7 @@
 #include "CMyVector.h"
 #include<math.h>
 #include<iostream>
+
 CMyVector::CMyVector(int s): size(s)
 {
 	elem = new double[s];
@@ -70,5 +71,14 @@ CMyVector operator*(double lambda, CMyVector a)
 	return tmp;
 }
 
+// Gibt länge des Vektors zurück
+double VecLength(CMyVector x) {
+	double erg = 0.0;
+	for (int i = 0; i < x.getSize(); i++)
+	{
+		erg += (x(i) * x(i));
+	}
+	return sqrt(erg);
+}
 
 	

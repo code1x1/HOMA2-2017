@@ -9,32 +9,25 @@ using namespace std;
 CMyVector gradient(CMyVector x, double(*funktion)(CMyVector x))
 {
 	const double h = 10e-8;
-	CMyVector x2 = CMyVector(x.getSize());
-	CMyVector x3 = CMyVector(x.getSize());
 	
-	for (int i = 0; i < x.getSize(); i++)
-		x2[i] = x(i);
+	CMyVector g = CMyVector(x.getSize());
 
 	for (int i = 0; i < x.getSize(); i++)
 	{
+		CMyVector x2 = x;
 		x2[i] = x(i) + h;
-		x3[i] = (funktion(x2) - funktion(x)) / h;
-		x2[i] = x(i);
+		g[i] = (funktion(x2) - funktion(x)) / h;
 	}
 
-	return x3;
+	return g;
 }
 
-// Gibt länge des Vektors zurück
-double VectorLength(CMyVector x) {
-	double erg = 0.0;
-	for (int i = 0; i < x.getSize(); i++)
-	{
-		erg += (x(i) * x(i));
-	}
-	erg = sqrt(erg);
-
-	return erg;
+ostream& operator<<(ostream& stream, CMyVector x) 
+{
+	stream << "( ";
+	for (size_t i = 0; i < x.getSize(); i++)
+		stream << x(i) << (i == x.getSize() - 1 ? ")" : ", ");
+	return stream;
 }
 
 double f(CMyVector x) 
@@ -51,83 +44,61 @@ double fx(CMyVector x) {
 	return f(x);
 }
 
+void verfahren(CMyVector x, double(*funktion)(CMyVector x), double lambda = 1.0) {
 
-int main()
-{
-	const char tab = '\t';
-	CMyVector x = CMyVector(2);
-	x[0] = 3;
-	x[1] = 3;
-	double lambda = 1.0;
-	CMyVector grad = CMyVector(2);
+	cout << "Berechnungen beim Gradientenverfahren zur Testfunktion f:" << endl << endl;
 
-	for (int i = 0;; i++)
+
+	for (int i = 0;i <= 50; i++)
 	{
-		grad = gradient(x, *fx);
-		if (i == 0)
+		cout << "Schritt " << i << ":" << endl;
+		cout << "x = " << x << endl;
+		cout << "f(x) = " << funktion(x) << endl;
+		cout << "lambda = " << lambda << endl;
+		cout << "grad f(x) = " << gradient(x, funktion) << endl;
+		cout << "||grad f(x)|| = " << VecLength( gradient(x, funktion)) << endl;
+		
+		CMyVector x_neu = x + lambda * gradient(x, funktion);
+		
+		if (funktion(x_neu) > funktion(x))
 		{
-			cout << "Berechnungen beim Gradientenverfahren zur Testfunktion f:" << endl << endl;
-		}
-
-		if (VectorLength(grad) < 10e-5) 
-		{
-			cout << "Ende wegen Laenge grad < 10e-5" << endl;
-		}
-		else if (!(i < 50))
-		{
-			cout << "Ende wegen Schrittanzahl = 50 bei " << endl;
-		}
-		else
-		{
-			cout << "Schritt " << i << ":" << endl;
-		}
-			
-		cout << "\t" << "lambda = " << lambda << endl;
-		cout << "\t" << "f(x) = " << fx(x) << endl;
-		cout << "\t" << "grad f(x) = ( " << grad(0) << ";" << grad(1) << ")" << endl;
-		cout << "\t" << "|grad f(x)| = " << VectorLength(grad) << endl;
-		CMyVector xneu = x + lambda * grad;
-
-		cout << "x_neu = ( " << xneu(0) << "; " << xneu(1) << ")" << endl;
-		cout << "f(x_neu) = " << fx(xneu) << endl;
-		if (fx(xneu) > fx(x)) 
-		{
-			CMyVector xtest = x + (2. * lambda) * grad;
-			if (fx(xtest) > fx(xneu))
+			CMyVector x_test = x + 2 * lambda * gradient(x, funktion);
+			if (funktion(x_test) > funktion(x_neu))
 			{
-				x = xtest;
 				lambda *= 2.;
-				cout << "Test mit doppelter Schrittweite(lambda = " << lambda << ") :" << endl;
-				cout << "x_test = ( " << xtest(0) << "; " << xtest(1) << ")" << endl;
-				cout << "f(x_test) = " << fx(xtest) << endl;
+				x = x_test;
 			}
 			else
-			{
-				x = xneu;
-			}
+				x = x_neu;
 		}
-		else if (fx(xneu) <= fx(x))
+		else
 		{
 			do
 			{
 				lambda *= 0.5;
-				xneu = x + lambda * grad;
-			} while (fx(xneu) > fx(x));
-			x = xneu;
+				x_neu = x + lambda * gradient(x, funktion);
+			} while (funktion(x_neu)>funktion(x));
+			x = x_neu;
 		}
 
 #pragma region Abbruch
-		if (VectorLength(grad) < 10e-5)
-		{
-			break;
-		}
-		else if (!(i < 50))
-		{
-			break;
-		}
+		if (i > 49 || VecLength(x) < 10e-5)break;
 #pragma endregion Abbruch
 
 	}
+}
+
+
+int main()
+{
+	
+	CMyVector x = CMyVector(2);
+	x[0] = 3;
+	x[1] = 2;
+	double lambda = 1.0;
+	
+	verfahren(x, fx);
+
 
 	system("PAUSE");
 	return 0;
