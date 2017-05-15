@@ -11,7 +11,7 @@ CMyVector::CMyVector(int s): size(s)
 	}
 }
 
-CMyVector::CMyVector(): size(0)
+CMyVector::CMyVector() : size(0)
 {
 }
 
