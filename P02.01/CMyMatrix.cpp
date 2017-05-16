@@ -105,3 +105,8 @@ std::ostream& operator<<(std::ostream& stream,CMyMatrix M)
 }
 
 
+CMyMatrix jacobi(CMyVector x, CMyVector(*funktion)(CMyVector x))
+{
+	CMyMatrix Jf();
+
+}
