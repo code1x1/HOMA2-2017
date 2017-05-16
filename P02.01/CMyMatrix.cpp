@@ -2,7 +2,7 @@
 #include<algorithm>
 
 
-CMyMatrix::CMyMatrix(const int m, const int n): zeile(m), spalte(n)
+CMyMatrix::CMyMatrix(int m, int n): zeile(m), spalte(n)
 {
 	elem = new CMyVector[zeile];
 	for (int i = 0; i < zeile; i++)
@@ -104,9 +104,31 @@ std::ostream& operator<<(std::ostream& stream,CMyMatrix M)
 	return stream;
 }
 
+CMyMatrix transponiert(CMyMatrix a) {
+	CMyMatrix t(a.getSpalte(), a.getZeile());
+	for (int i = 0; i < a.getSpalte(); i++)
+	{
+		for (int j = 0; j < a.getZeile(); j++)
+		{
+			t[i][j] = a[j][i];
+		}
+	}
+	return t;
+}
 
 CMyMatrix jacobi(CMyVector x, CMyVector(*funktion)(CMyVector x))
 {
-	CMyMatrix Jf();
+	int Hohe = funktion(x).getSize();
+	CMyMatrix ErgMatrix(x.getSize(),Hohe);
+	const double h = 10e-4;
+	
+	for (int i = 0; i < x.getSize(); i++)
+	{
+		CMyVector xh = x;
+		xh[i] = x(i) + h;
+		ErgMatrix[i] = (funktion(xh) - funktion(x)) / h;
 
+	}
+	
+	return transponiert(ErgMatrix);
 }

@@ -8,6 +8,7 @@ class CMyMatrix
 	CMyVector* elem;
 	double determinante();
 public:
+	// Zeile , Spalte
 	CMyMatrix(int n, int m);
 	CMyMatrix(CMyMatrix& b);
 	double operator()(int i, int j);
@@ -21,4 +22,4 @@ public:
 CMyMatrix operator*(double lambda, CMyMatrix a);
 CMyVector operator*(CMyMatrix A, CMyVector x);
 std::ostream& operator<<(std::ostream& stream, CMyMatrix M);
-
+CMyMatrix jacobi(CMyVector x, CMyVector(*funktion)(CMyVector x));

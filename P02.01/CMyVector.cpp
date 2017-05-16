@@ -1,6 +1,5 @@
 #include "CMyVector.h"
 #include<math.h>
-#include<iostream>
 
 CMyVector::CMyVector(int s): size(s)
 {
@@ -80,6 +79,19 @@ CMyVector operator+(CMyVector a, CMyVector b)
 	return tmp;
 }
 
+CMyVector operator-(CMyVector a, CMyVector b)
+{
+
+	CMyVector tmp = CMyVector(a.getSize());
+
+	for (int i = 0; i < tmp.getSize(); i++)
+	{
+		tmp[i] = a(i) - b(i);
+	}
+
+	return tmp;
+}
+
 CMyVector operator*(double lambda, CMyVector a)
 {
 
@@ -88,6 +100,19 @@ CMyVector operator*(double lambda, CMyVector a)
 	for (int i = 0; i < tmp.getSize(); i++)
 	{
 		tmp[i] = lambda * a(i);
+	}
+
+	return tmp;
+}
+
+CMyVector operator/(CMyVector a, double lambda)
+{
+
+	CMyVector tmp = CMyVector(a.getSize());
+
+	for (int i = 0; i < tmp.getSize(); i++)
+	{
+		tmp[i] = a(i) / lambda;
 	}
 
 	return tmp;
@@ -113,4 +138,13 @@ double VecLength(CMyVector x) {
 	return sqrt(erg);
 }
 
-	
+std::ostream& operator<<(std::ostream& stream, CMyVector x)
+{
+		stream << "( ";
+		for (int j = 0; j < x.getSize(); j++)
+		{
+			stream << x(j) << (j == x.getSize() - 1 ? "" : ", ");
+		}
+		stream << ")\n";
+	return stream;
+}

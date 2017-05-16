@@ -1,4 +1,6 @@
 #pragma once
+#include<iostream>
+
 class CMyVector
 {
 private:
@@ -17,10 +19,12 @@ public:
 };
 
 CMyVector operator+(CMyVector a, CMyVector b);
+CMyVector operator-(CMyVector a, CMyVector b);
 CMyVector operator*(double lambda, CMyVector a);
+CMyVector operator/(CMyVector a, double lambda);
 double operator*(CMyVector a, CMyVector b);
 
 double VecLength(CMyVector x);
-
+std::ostream& operator<<(std::ostream& stream, CMyVector x);
 
 
