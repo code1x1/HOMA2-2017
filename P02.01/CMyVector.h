@@ -7,18 +7,18 @@ private:
 public:
 	CMyVector(int s);
 	CMyVector();
-	~CMyVector();
+	~CMyVector(); // Könnte Fehler verursachen!?
 	int getSize();
 	void setSize(int s);
 	double operator()(int i);
 	double& operator[](int i);
-	CMyVector& operator=(CMyVector& b);
-	CMyVector& operator=(CMyVector* b);
+	void operator=(CMyVector& b);
 	CMyVector(CMyVector & b);
 };
 
 CMyVector operator+(CMyVector a, CMyVector b);
 CMyVector operator*(double lambda, CMyVector a);
+double operator*(CMyVector a, CMyVector b);
 
 double VecLength(CMyVector x);
 

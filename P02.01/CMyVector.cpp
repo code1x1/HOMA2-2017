@@ -27,54 +27,34 @@ int CMyVector::getSize()
 void CMyVector::setSize(int s)
 {
 	size = s;
+	elem = new double[size];
+	for (int i = 0; i < size; i++)
+	{
+		elem[i] = 0.0;
+	}
 }
 
 double CMyVector::operator()(int i)
 {
-	if (i < size)
-	{
-		return elem[i];
-	}
-	else
-	{
-		throw("Indexfehler");
-	}
+	return elem[i];
 }
 
 double& CMyVector::operator[](int i)
 {
-	if (i < size)
-	{
-		return elem[i];
-	}
-	else
-	{
-		throw("Indexfehler");
-	}
-	
+	return elem[i];
 }
 
-CMyVector& CMyVector::operator=(CMyVector& b)
+void CMyVector::operator=(CMyVector& b)
 {
-	CMyVector a(b.getSize());
+	this->size = b.getSize();
 	// TODO: hier Rückgabeanweisung eingeben
-	for (size_t i = 0; i < b.getSize(); i++)
+	for (int i = 0; i < b.getSize(); i++)
 	{
-		a[i] = b(i);
+		this->operator[](i) = b(i);
 	}
-	return a;
 }
 
-CMyVector & CMyVector::operator=(CMyVector * b)
-{
-	CMyVector a(b->getSize());
-	// TODO: hier Rückgabeanweisung eingeben
-	for (size_t i = 0; i < b->getSize(); i++)
-	{
-		a[i] = b->operator()(i);
-	}
-	return a;
-}
+
 
 CMyVector::CMyVector(CMyVector& b)
 {
@@ -111,6 +91,16 @@ CMyVector operator*(double lambda, CMyVector a)
 	}
 
 	return tmp;
+}
+
+double operator*(CMyVector a, CMyVector b)
+{
+	double erg = 0.0;
+	for (int i = 0; i < a.getSize(); i++)
+	{
+		erg += a(i)*b(i);
+	}
+	return erg;
 }
 
 // Gibt länge des Vektors zurück
