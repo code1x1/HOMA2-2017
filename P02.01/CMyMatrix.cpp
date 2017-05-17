@@ -120,7 +120,7 @@ CMyMatrix jacobi(CMyVector x, CMyVector(*funktion)(CMyVector x))
 {
 	int Hohe = funktion(x).getSize();
 	CMyMatrix ErgMatrix(x.getSize(),Hohe);
-	const double h = 10e-4;
+	const double h = 10e-6;
 	
 	for (int i = 0; i < x.getSize(); i++)
 	{
