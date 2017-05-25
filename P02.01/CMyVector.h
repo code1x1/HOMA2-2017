@@ -15,7 +15,7 @@ public:
 	double operator()(int i);
 	double& operator[](int i);
 	void operator=(CMyVector& b);
-	CMyVector(CMyVector & b);
+	CMyVector(CMyVector& b);
 };
 
 CMyVector operator+(CMyVector a, CMyVector b);

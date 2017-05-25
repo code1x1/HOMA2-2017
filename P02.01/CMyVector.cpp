@@ -14,6 +14,17 @@ CMyVector::CMyVector() : size(0)
 {
 }
 
+CMyVector::CMyVector(CMyVector& b)
+{
+	size = b.getSize();
+	elem = new double[size];
+	for (int i = 0; i < size; i++)
+	{
+		elem[i] = b(i);
+	}
+
+}
+
 CMyVector::~CMyVector()
 {
 }
@@ -54,17 +65,6 @@ void CMyVector::operator=(CMyVector& b)
 }
 
 
-
-CMyVector::CMyVector(CMyVector& b)
-{
-	size = b.getSize();
-	elem = new double[size];
-	for (int i = 0; i < size; i++)
-	{
-		elem[i] = b(i);
-	}
-	
-}
 
 CMyVector operator+(CMyVector a, CMyVector b)
 {
