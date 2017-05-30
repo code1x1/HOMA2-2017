@@ -3,59 +3,85 @@
 
 using namespace std;
 
-void C_DGLSolver::euler(double x_start, double x_end, int schritte, CMyVector y_Start)
+double C_DGLSolver::euler(double x_start, double x_end, int schritte, CMyVector y_Start, bool ausgabe)
 {
-	h = (x_end - x_start) / double(schritte);
-	cout << "h = " << h << "\n\n\n";
+	double h = (x_end - x_start) / double(schritte);
+	if(ausgabe)
+		cout << "h = " << h << "\n\n\n";
 	CMyVector y(y_Start.getSize());
 	CMyVector y_vorher = y_Start;
 	for (int i = 0; i < schritte; i++)
 	{
 		y = y_vorher + h *  ableitungen(y_vorher, x_start);	
 		CMyVector y_abgeleitet = ableitungen(y_vorher, x_start);
-
-		cout << "Schritt " << i << ":\n";
-		cout << "\tx = " << x_start << "\n";
-		cout << "\ty = " << y_vorher;
-		cout << "\ty' = " << y_abgeleitet;
+		if (ausgabe) 
+		{
+			cout << "Schritt " << i << ":\n";
+			cout << "\tx = " << x_start << "\n";
+			cout << "\ty = " << y_vorher;
+			cout << "\ty' = " << y_abgeleitet << "\n";
+		}
 		x_start += h;
 		y_vorher = y;
 	}
-	cout << "Abweichung Euler fuer Schrittzahl " <<
-		schritte << " : " << y(0) - 0.5;
+	if (ausgabe)
+	{
+		cout << "Ende bei\n";
+		cout << "\tx = " << x_start << "\n";
+		cout << "\ty = " << y << "\n";
+	}
+
+	/*cout << "Abweichung Euler fuer Schrittzahl " <<
+		schritte << " : " << y(0) - 0.5;*/
+	return (y(0) - 0.5);
 
 }
 
-void C_DGLSolver::heun(double x_start, double x_end, int schritte, CMyVector y_Start)
+double C_DGLSolver::heun(double x_start, double x_end, int schritte, CMyVector y_Start, bool ausgabe)
 {
-	h = (x_end - x_start) / double(schritte);
+	double h = (x_end - x_start) / double(schritte);
 	int d = y_Start.getSize();
 	double x_neu = x_start, x_alt;
 	CMyVector y_neu = y_Start, y_hilf(d), s(d), steigung(d);
-
-	cout << "h = " << h << "\n\n\n";
+	if (ausgabe)
+		cout << "h = " << h << "\n\n\n";
 	for (int i = 0; i < schritte; i++)
 	{
 		y_hilf = y_neu;
-		
-		cout << "Schritt " << i << ":\n";
-		cout << "\tx = " << x_neu << "\n";
-		cout << "\ty = " << y_hilf;
-		cout << "\ty' = " << ableitungen(y_hilf, x_neu);
+		if (ausgabe)
+		{
+			cout << "Schritt " << i << ":\n";
+			cout << "\tx = " << x_neu << "\n";
+			cout << "\ty = " << y_hilf;
+			cout << "\ty' = " << ableitungen(y_hilf, x_neu);
+		}
+
 
 		y_neu = y_neu + h * ableitungen(y_neu, x_neu);
 		x_alt = x_neu;
 		x_neu += h;
 		steigung = ableitungen(y_neu, x_neu);
 		s = 0.5 * (ableitungen(y_hilf, x_alt) + steigung);
-		
-		cout << "\n\ty_test = " << y_neu;
-		cout << "\ty'_test = " << ableitungen(y_neu, x_neu);
-		cout << "\n\ty'_mittel = " << s;
+		if (ausgabe)
+		{
+			cout << "\n\ty_test = " << y_neu;
+			cout << "\ty'_test = " << ableitungen(y_neu, x_neu);
+			cout << "\n\ty'_mittel = " << s << "\n";
+		}
+
 		y_neu = y_hilf + h * s;
 	}
-	cout << "Abweichung Heun fuer Schrittzahl " <<
-		schritte << " : " << y_neu(0) - 0.5 << endl;
+	if (ausgabe)
+	{
+		cout << "Ende bei\n";
+		cout << "\tx = " << x_neu << "\n";
+		cout << "\ty = " << y_neu << "\n";
+	}
+
+
+	/*cout << "Abweichung Heun fuer Schrittzahl " <<
+		schritte << " : " << y_neu(0) - 0.5 << endl;*/
+	return (y_neu(0) - 0.5);
 }
 
 CMyVector C_DGLSolver::ableitungen(CMyVector y, double x)
