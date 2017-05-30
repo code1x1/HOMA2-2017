@@ -21,19 +21,18 @@ double dgl_dritter(CMyVector y, double x)
 int main()
 {
 
-	//double x = 0;
-	//CMyVector y_start(2);
-	//y_start[0] = 0;
-	//y_start[1] = 1;
-	//C_DGLSolver test(dlg_erster);
-	//test.euler(x, 2, 100, y_start);
+	CMyVector y_start(2);
+	y_start[0] = 0;
+	y_start[1] = 1;
+	C_DGLSolver test(dlg_erster);
+	test.euler(0, 2, 100, y_start);
 	
-	C_DGLSolver solver(dgl_dritter);
-	CMyVector vec(3);
-	vec[0] = 1;
-	vec[1] = -1;
-	vec[2] = 2;
-	solver.euler(1, 2, 10, vec);
+	//C_DGLSolver solver(dgl_dritter);
+	//CMyVector vec(3);
+	//vec[0] = 1;
+	//vec[1] = -1;
+	//vec[2] = 2;
+	//solver.heun(1, 2, 10, vec);
 
 
 
