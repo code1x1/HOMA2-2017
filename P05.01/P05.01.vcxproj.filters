@@ -18,18 +18,12 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CMyVector.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="C_DGLSolver.cpp">
+    <ClCompile Include="CZufall.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CMyVector.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="C_DGLSolver.h">
+    <ClInclude Include="CZufall.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

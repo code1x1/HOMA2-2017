@@ -19,8 +19,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{5D23EC76-A5A3-45CF-A3D8-3A4855E13004}</ProjectGuid>
-    <RootNamespace>P0301</RootNamespace>
+    <VCProjectVersion>15.0</VCProjectVersion>
+    <ProjectGuid>{DF1F33E1-3ED1-4365-8353-ECEFE4123B2E}</ProjectGuid>
+    <RootNamespace>P0501</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -110,13 +111,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="CMyVector.cpp" />
-    <ClCompile Include="C_DGLSolver.cpp" />
+    <ClCompile Include="CZufall.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CMyVector.h" />
-    <ClInclude Include="C_DGLSolver.h" />
+    <ClInclude Include="CZufall.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
