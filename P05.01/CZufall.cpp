@@ -3,7 +3,7 @@
 
 int CZufall::wert(int a, int b)
 {
-	return (rand() % (b - a)) + a;
+	return (rand() % (b - a + 1)) + a;
 }
 
 void CZufall::initialisiere(int n)

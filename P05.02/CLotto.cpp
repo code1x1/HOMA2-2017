@@ -67,17 +67,27 @@ std::vector<int> CLotto::simuliereZiehung() {
 	return ziehung;
 }
 
-int CLotto::einzelZiehung() {
-	std::vector<int> ergebnis;
-	ergebnis = simuliereZiehung();
-	print_numbers(ergebnis);
-	print_numbers(tippzettel.leseZettel());
-	cout << "Uebereinstimmungen: " << anzahlGleich(ergebnis, tippzettel.leseZettel());
-	return anzahlGleich(ergebnis, tippzettel.leseZettel());
+int CLotto::einzelZiehung(bool ausgabe) {
+	std::vector<int> ziehung;
+	ziehung = simuliereZiehung();
+	if (ausgabe) {
+		print_numbers(ziehung);
+		print_numbers(tippzettel.leseZettel());
+		cout << "Uebereinstimmungen: " << anzahlGleich(ziehung, tippzettel.leseZettel());
+	}
+	return anzahlGleich(ziehung, tippzettel.leseZettel());
 }
 
-int CLotto::doppelZiehung() {
-	return anzahlGleich(simuliereZiehung(), simuliereZiehung());
+int CLotto::doppelZiehung(bool ausgabe) {
+	std::vector<int> ziehung1, ziehung2;
+	ziehung1 = simuliereZiehung();
+	ziehung2 = simuliereZiehung();
+	if(ausgabe) {
+		print_numbers(ziehung1);
+		print_numbers(ziehung2);
+		cout << "Uebereinstimmungen: " << anzahlGleich(ziehung1, ziehung2);
+	}
+	return anzahlGleich(ziehung1, ziehung2);
 }
 
 bool CLotto::schreibeTipp(int x) {
