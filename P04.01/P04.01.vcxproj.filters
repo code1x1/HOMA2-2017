@@ -18,10 +18,24 @@
     <ClInclude Include="CKomplex.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="CEinAusgabe.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CKomplex.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="CEinAusgabe.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Praktikum4_Daten_original.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
   </ItemGroup>
 </Project>

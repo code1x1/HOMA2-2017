@@ -111,10 +111,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="CEinAusgabe.h" />
     <ClInclude Include="CKomplex.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CEinAusgabe.cpp" />
     <ClCompile Include="CKomplex.cpp" />
+    <ClCompile Include="main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Praktikum4_Daten_original.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
