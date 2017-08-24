@@ -3,6 +3,7 @@ class CKomplex
 {
 	double a, b;
 public:
+	CKomplex();
 	CKomplex(double a, double b);
 	CKomplex(double phi);
 	double re();

@@ -1,6 +1,10 @@
 #include "CKomplex.h"
 #include<math.h>
 
+CKomplex::CKomplex()
+{
+}
+
 CKomplex::CKomplex(double a, double b)
 {
 	this->a = a;
