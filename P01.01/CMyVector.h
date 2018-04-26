@@ -15,12 +15,12 @@ public:
 	CMyVector& operator=(CMyVector& b);
 	CMyVector& operator=(CMyVector* b);
 	CMyVector(CMyVector & b);
+	double length();
 };
 
 CMyVector operator+(CMyVector a, CMyVector b);
 CMyVector operator*(double lambda, CMyVector a);
 
-double VecLength(CMyVector x);
 
 
 

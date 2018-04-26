@@ -56,7 +56,7 @@ void verfahren(CMyVector x, double(*funktion)(CMyVector x), double lambda = 1.0)
 		cout << "f(x) = " << funktion(x) << endl;
 		cout << "lambda = " << lambda << endl;
 		cout << "grad f(x) = " << gradient(x, funktion) << endl;
-		cout << "||grad f(x)|| = " << VecLength( gradient(x, funktion)) << endl;
+		cout << "||grad f(x)|| = " << gradient(x, funktion).length() << endl;
 		
 		CMyVector x_neu = x + lambda * gradient(x, funktion);
 		
@@ -82,7 +82,7 @@ void verfahren(CMyVector x, double(*funktion)(CMyVector x), double lambda = 1.0)
 		}
 
 #pragma region Abbruch
-		if (i > 49 || VecLength(x) < 10e-5)break;
+		if (i > 49 || x.length() < 10e-5)break;
 #pragma endregion Abbruch
 
 	}

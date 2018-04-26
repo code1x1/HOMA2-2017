@@ -87,6 +87,7 @@ CMyVector::CMyVector(CMyVector& b)
 	
 }
 
+
 CMyVector operator+(CMyVector a, CMyVector b)
 {
 
@@ -113,12 +114,12 @@ CMyVector operator*(double lambda, CMyVector a)
 	return tmp;
 }
 
-// Gibt länge des Vektors zurück
-double VecLength(CMyVector x) {
+double CMyVector::length()
+{
 	double erg = 0.0;
-	for (int i = 0; i < x.getSize(); i++)
+	for (int i = 0; i < size; i++)
 	{
-		erg += (x(i) * x(i));
+		erg += (elem[i] * elem[i]);
 	}
 	return sqrt(erg);
 }
